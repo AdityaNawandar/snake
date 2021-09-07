@@ -107,7 +107,6 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void _startGame() {
-    isStopped = false;
     isStartButtonEnabled = false;
     snakeCellNumbers = [45, 65, 85, 105, 125];
     var duration = Duration(milliseconds: animationDuration);
@@ -122,6 +121,7 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void changeSpeed(Timer timer) {
+    isStartButtonEnabled = false;
     if (timer != null && timer.isActive) timer.cancel();
     animationDuration -= 10;
     timer = Timer.periodic(Duration(milliseconds: animationDuration), (timer) {
@@ -227,10 +227,10 @@ class _GameScreenState extends State<GameScreen> {
               child: new IconButton(
                 icon: new Icon(Icons.play_circle_filled),
                 color: Colors.yellow,
+
                 padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                 constraints: BoxConstraints(),
-                //iconSize: 40,
-                highlightColor: Colors.white,
+                highlightColor: Colors.brown[200],
                 onPressed: () {
                   isStartButtonEnabled ? _startGame() : null;
                 },
